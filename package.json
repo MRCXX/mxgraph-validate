@@ -1,40 +1,38 @@
 {
-  "name": "webpack-library-starter",
-  "version": "1.0.2",
-  "description": "Produce universal library with webpack and es6",
-  "main": "lib/webpack-library-starter.js",
+  "name": "mxgraph-validate",
+  "version": "0.0.1",
+  "description": "validate mxgraph json format",
+  "main": "lib/mxgraph-validate.js",
   "scripts": {
     "build": "webpack --env dev && webpack --env build && npm run test",
     "dev": "webpack --progress --colors --watch --env dev",
     "test": "mocha --require babel-register --colors ./test/*.spec.js",
     "test:watch": "mocha --require babel-register --colors -w ./test/*.spec.js",
     "test:cover": "cross-env NODE_ENV=test nyc mocha --require babel-register --colors test/*.js",
-    "repl": "node -i -e \"$(< ./lib/webpack-library-starter.js)\""
+    "repl": "node -i -e \"$(< ./lib/mxgraph-validate.js)\"",
+    "eslint": "eslint --ext .js --ignore-pattern \"bad.*\" .",
+    "fix": "eslint ./src/*.js --fix"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/krasimir/webpack-library-starter.git"
+    "url": "https://github.com/MRCXX/mxgraph-validate.git"
   },
   "keywords": [
-    "webpack",
-    "es6",
-    "starter",
-    "library",
-    "universal",
-    "umd",
-    "commonjs"
+    "mxgraph",
+    "validate",
+    "errorcheck"
   ],
-  "author": "Krasimir Tsonev",
+  "author": "MRC",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/krasimir/webpack-library-starter/issues"
+    "url": "https://github.com/MRCXX/mxgraph-validate/issues"
   },
-  "homepage": "https://github.com/krasimir/webpack-library-starter",
+  "homepage": "https://github.com/MRCXX/mxgraph-validate",
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.51",
     "@babel/core": "^7.0.0-beta.51",
     "@babel/preset-env": "^7.0.0-beta.51",
-    "babel-eslint": "^8.0.3",
+    "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.0-beta.4",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-istanbul": "^5.1.0",
@@ -42,19 +40,27 @@
     "babel-register": "^7.0.0-beta.3",
     "chai": "^4.1.2",
     "cross-env": "^5.2.0",
-    "eslint": "^5.0.1",
-    "eslint-loader": "^2.0.0",
-    "jsdom": "11.11.0",
-    "jsdom-global": "3.0.2",
+    "eslint": "^6.6.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-loader": "^3.0.2",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "jsdom": "^15.2.1",
+    "jsdom-global": "^3.0.2",
     "mocha": "^4.0.1",
+    "nyc": "^13.1.0",
     "uglifyjs-webpack-plugin": "^1.2.7",
     "webpack": "^4.12.2",
     "webpack-cli": "^3.0.8",
-    "yargs": "^10.0.3",
-    "nyc": "^13.1.0"
+    "yargs": "^10.0.3"
   },
   "nyc": {
     "sourceMap": false,
     "instrument": false
+  },
+  "dependencies": {
+    "lodash": "^4.17.15"
   }
 }

@@ -1,32 +1,25 @@
 /* global describe, it, before */
 
-import chai from 'chai';
-import {Cat, Dog} from '../lib/webpack-library-starter.js';
+import chai from 'chai'
+import { parser } from '../lib/mxgraph-validate.js'
+import data from './data.js'
 
-chai.expect();
+chai.expect()
 
-const expect = chai.expect;
+const expect = chai.expect
 
-let lib;
+let lib
 
-describe('Given an instance of my Cat library', () => {
+
+describe('========================', () => {
   before(() => {
-    lib = new Cat();
-  });
-  describe('when I need the name', () => {
-    it('should return the name', () => {
-      expect(lib.name).to.be.equal('Cat');
-    });
-  });
-});
-
-describe('Given an instance of my Dog library', () => {
-  before(() => {
-    lib = new Dog();
-  });
-  describe('when I need the name', () => {
-    it('should return the name', () => {
-      expect(lib.name).to.be.equal('Dog');
-    });
-  });
-});
+    lib = new parser(data)
+    console.log(lib.getType(3))
+  })
+  it('check getType', () => {
+    expect(lib.getType('3')).to.be.equal('Task')
+  })
+  it('fn checkEdge', () => {
+    expect(lib.checkEdge().length).to.be.equal(1)
+  })
+})
