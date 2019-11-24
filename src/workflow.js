@@ -52,14 +52,22 @@ class Parser {
   checkEdge () {
     const errorArr = []
     const edgeObj = this.groupEdgeBySource()
-    console.log(edgeObj)
+    // console.log(edgeObj)
     for (const sourceId in edgeObj) {
       const arr = edgeObj[sourceId]
       if (this.getType(sourceId) === 'Task' && arr.length > 1) {
         errorArr.push(this.makeErr('TaskError', `Task(${sourceId})只能有一个子节点`))
       }
-      if (this.getType(sourceId) === 'Branch' && arr.length > 2) {
-        errorArr.push(this.makeErr('BranchError', `Branch(${sourceId})有且仅有两个子节点`))
+      if (this.getType(sourceId) === 'Branch') {
+        if (arr.length > 2) {
+          errorArr.push(this.makeErr('BranchError', `Branch(${sourceId})有且仅有两个子节点`))
+        }
+        for (const index in arr) {
+          const _edge = arr[index]
+          if (!_edge._label || (_edge._label !== 'false' && _edge._label !== 'true')) {
+            errorArr.push(this.makeErr('EdgeError', `edge(${_edge._id})结果对应的走向只能为"true"或者"false")`))
+          }
+        }
       }
       if (sourceId === 'Trigger') {
         if (arr.length > 1) {
